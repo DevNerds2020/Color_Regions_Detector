@@ -106,4 +106,4 @@ if __name__ == "__main__":
         "cyan": "#00FFFF",
         "turquoise": "#40E0D0",
     }
-    app.run(debug=True)
+    app.run()
