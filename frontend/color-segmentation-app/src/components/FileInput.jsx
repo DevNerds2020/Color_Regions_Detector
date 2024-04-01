@@ -2,16 +2,17 @@
 import { FileUploader } from 'react-drag-drop-files';
 import { Button, Typography } from '@mui/material';
 import axios from 'axios';
-const fileTypes = ['JPEG', 'PNG', 'GIF'];
+const fileTypes = ['JPEG', 'PNG', 'GIF', 'JPG'];
 
 const FileInput = (props) => {
-  const { setSelectedFile, setBarChartColors, setBarChartSeries, selectedFile } = props;
+  const { setSelectedFile, setBarChartColors, setBarChartSeries, selectedFile, selectedColors } = props;
   const handleFileChange = async (file) => {
     setSelectedFile(file);
   };
   const handleSubmit = async () => {
     const formData = new FormData();
     formData.append('file', selectedFile);
+    formData.append('includeColors', selectedColors);
 
     try {
       const response = await axios.post('http://localhost:5000/analyze', formData, {

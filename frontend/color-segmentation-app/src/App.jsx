@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import FileInput from './components/FileInput';
+import ColorChooser from './components/ColorChooser';
 
 function App() {
   const [barChartSeries, setBarChartSeries] = useState([]);
   const [barChartColors, setBarChartColors] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedColors, setSelectedColors] = useState([]);
 
   return (
     <div
@@ -19,15 +21,19 @@ function App() {
       }}
     >
       <h2>Color Detector (v.0.1) </h2>
-      <FileInput
-        setBarChartColors={setBarChartColors}
-        setBarChartSeries={setBarChartSeries}
-        selectedFile={selectedFile}
-        setSelectedFile={setSelectedFile}
-      />
+      <div>
+        <FileInput
+          setBarChartColors={setBarChartColors}
+          setBarChartSeries={setBarChartSeries}
+          selectedFile={selectedFile}
+          setSelectedFile={setSelectedFile}
+          selectedColors={selectedColors}
+        />
+        <ColorChooser selectedColors={selectedColors} setSelectedColors={setSelectedColors} />
+      </div>
       <div>
         <h2>Color Percentages:</h2>
-        <BarChart series={barChartSeries} width={1200} height={350} colors={barChartColors} />
+        <BarChart selectedColors={selectedColors} series={barChartSeries} width={1200} height={350} colors={barChartColors} />
       </div>
     </div>
   );
